@@ -18,14 +18,30 @@ galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 galleryContainer.addEventListener('click', onGalleryContainerClick);
 
 function onGalleryContainerClick(event) {
+
     event.preventDefault();
+
     if (!event.target.classList.contains('gallery__image')) {
         return;
     }
 
-    // console.log(event.target.dataset.source);
+    const bigPicture = event.target.dataset.source;    
 
-    const bigPicture = event.target.dataset.source;
-    return bigPicture;
-    
+    const instance = basicLightbox.create(`
+    <img src="${bigPicture}" width="1280">
+`);
+
+    instance.show();
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === 'Escape') {
+            instance.close();
+        }
+    }); 
 }
+
+
+
+
+
+
