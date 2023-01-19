@@ -17,6 +17,33 @@ galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 
 galleryContainer.addEventListener('click', onGalleryContainerClick);
 
+// function onGalleryContainerClick(event) {
+
+//     event.preventDefault();
+
+//     if (!event.target.nodeName === 'img') {
+//         return;
+//     }
+
+//     const bigPicture = event.target.dataset.source;    
+
+//     const instance = basicLightbox.create(`
+//     <img src="${bigPicture}" width="1280">
+// `);
+
+//     instance.show();  
+    
+//     document.addEventListener("keydown", (e) => {
+//         if (e.key === 'Escape') {
+//             instance.close();
+//         }
+//     });
+    
+// }
+
+
+// ===================================================================================================
+
 function onGalleryContainerClick(event) {
 
     event.preventDefault();
@@ -25,29 +52,23 @@ function onGalleryContainerClick(event) {
         return;
     }
 
-    const bigPicture = event.target.dataset.source;    
+    const bigPicture = event.target.dataset.source;  
+    
+    const instance = basicLightbox.create(`<img src="${bigPicture}" width="1280">`, {
+        onShow: (instance) => { document.addEventListener("keydown", closeEsc); },
+        
+        onClose: (instance) => { document.removeEventListener("keydown", closeEsc); }
+    });
 
-    const instance = basicLightbox.create(`
-    <img src="${bigPicture}" width="1280">
-`);
+    instance.show(); 
 
-    instance.show();   
-
-
-    // document.addEventListener("keydown", (e) => {
-    //     if (e.key === 'Escape') {
-    //         instance.close();
-    //     }
-    // }); 
-}
-
-
-const option = {
-		onShow: (instance) => console.log('onShow', instance),
-		onClose: (instance) => console.log('onClose', instance)
-	};
-const instance = basicLightbox.create(html, option);
+    function closeEsc(e) {
+        if (e.key === 'Escape') {
+            instance.close();
+        }      
+    };
+     
+}  
 
 
-
-
+    
