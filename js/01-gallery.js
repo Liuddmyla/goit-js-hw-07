@@ -21,7 +21,7 @@ function onGalleryContainerClick(event) {
 
     event.preventDefault();
 
-    if (!event.target.classList.contains('gallery__image')) {
+    if (!event.target.nodeName === 'img') {
         return;
     }
 
@@ -31,16 +31,22 @@ function onGalleryContainerClick(event) {
     <img src="${bigPicture}" width="1280">
 `);
 
-    instance.show();
+    instance.show();   
 
-    document.addEventListener("keydown", (e) => {
-        if (e.key === 'Escape') {
-            instance.close();
-        }
-    }); 
+
+    // document.addEventListener("keydown", (e) => {
+    //     if (e.key === 'Escape') {
+    //         instance.close();
+    //     }
+    // }); 
 }
 
 
+const option = {
+		onShow: (instance) => console.log('onShow', instance),
+		onClose: (instance) => console.log('onClose', instance)
+	};
+const instance = basicLightbox.create(html, option);
 
 
 

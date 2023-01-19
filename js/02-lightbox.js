@@ -16,15 +16,16 @@ function createGalleryCardsMarkup(galleryItems) {
 
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 
-galleryContainer.addEventListener('click', onGalleryContainerClick);
 
-function onGalleryContainerClick(event) {
-    event.preventDefault();
-    if (!event.target.classList.contains('gallery__image')) {
-        return;
-    }     
-}
+// galleryContainer.addEventListener('click', onGalleryContainerClick);
 
- var lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionPosition: 'bottom', captionDelay: '250' });
+// function onGalleryContainerClick(event) {
+//     event.preventDefault();
+//     if (!event.target.classList.contains('gallery__image')) {
+//         return;
+//     }     
+// }
+
+new SimpleLightbox('.gallery a', { captionsData: 'alt', captionPosition: 'bottom', captionDelay: '250' });
 
 
