@@ -63,7 +63,7 @@ function onGalleryContainerClick(event) {
     instance.show(); 
 
     function closeEsc(e) {
-        if (e.key === 'Escape') {
+        if (e.code === 'Escape') {
             instance.close();
         }      
     };
